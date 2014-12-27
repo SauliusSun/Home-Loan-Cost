@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Būsto paskolos skaičiuoklė";
+}
+
+<h2>Būsto paskolos skaičiuoklė</h2>
+
+<form id="formId" action="@Url.Action("Calculate", "Loans")" method="POST">
+    
+    Paskolos suma: 
+
+    <br/><br/>
+
+    <input id="btnPrioritaze" class="btn btn-success btn-sm" type="submit" value="Skaičiuoti!" />
+</form>
