@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HomeLoanCost.Models.Loan
+
+@{
     ViewBag.Title = "Būsto paskolos skaičiuoklė";
 }
 
@@ -6,9 +8,23 @@
 
 <form id="formId" action="@Url.Action("Calculate", "Loans")" method="POST">
     
-    Paskolos suma: 
-
+    Paskolos suma 
+    @Html.TextBoxFor(m => m.Credit)
     <br/><br/>
+    Paskolos palūkanos
+    @Html.TextBoxFor(m => m.InterestRate)
+    <br/><br/>
+    Paskola laikotarpiui (metai)
+    @Html.TextBoxFor(m => m.Years)
+    <br /><br />
 
-    <input id="btnPrioritaze" class="btn btn-success btn-sm" type="submit" value="Skaičiuoti!" />
+    <input id="btnCalculate" class="btn btn-success btn-sm" type="submit" value="Skaičiuoti!" />
 </form>
+
+@*@if (Model.Lines != null && Model.Lines.Count > 0)
+{
+    foreach (var line in Model.Lines)
+    {
+
+    }
+}*@

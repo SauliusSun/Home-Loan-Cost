@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using HomeLoanCost.Models;
 
 namespace HomeLoanCost.Controllers
 {
@@ -9,9 +10,9 @@ namespace HomeLoanCost.Controllers
             return View();
         }
 
-        public ActionResult Calculate()
+        public ActionResult Calculate(Loan loan)
         {
-            return View();
+            return RedirectToAction("Landing");
         }
     }
 }
