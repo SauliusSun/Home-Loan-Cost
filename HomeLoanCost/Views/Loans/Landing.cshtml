@@ -21,10 +21,15 @@
     <input id="btnCalculate" class="btn btn-success btn-sm" type="submit" value="Skaičiuoti!" />
 </form>
 
-@*@if (Model.Lines != null && Model.Lines.Count > 0)
-{
-    foreach (var line in Model.Lines)
-    {
+<table class="table table-striped">
 
+
+    @if (Model != null && Model.Payments != null && Model.Payments.Count > 0)
+    {
+        foreach (var payment in Model.Payments)
+        {
+            <tr>@payment.Month      @payment.Interest @payment.Repayment    @payment.Credit</tr>
+            <br />
+        }
     }
-}*@
+</table>

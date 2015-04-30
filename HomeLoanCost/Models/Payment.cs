@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace HomeLoanCost.Models
+﻿namespace HomeLoanCost.Models
 {
-    public class Line
+    public class Payment
     {
         public int Month { get; set; }
 
         public decimal Interest { get; set; }
+
+        public decimal Repayment { get; set; }
 
         public decimal Credit { get; set; }
     }

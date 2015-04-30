@@ -6,7 +6,7 @@ namespace HomeLoanCost.Models
     {
         public Loan()
         {
-            Lines = new List<Line>();
+            Payments = new List<Payment>();
         }
 
         public decimal Credit { get; set; }
@@ -15,6 +15,14 @@ namespace HomeLoanCost.Models
 
         public int Years { get; set; }
 
-        public List<Line> Lines { get; set; }
+        public List<Payment> Payments { get; set; }
+
+        public int PaymentsCount
+        {
+            get
+            {
+                return Years*12;
+            }
+        }
     }
 }
