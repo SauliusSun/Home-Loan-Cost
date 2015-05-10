@@ -1,7 +1,6 @@
-﻿using System;
+﻿using HomeLoanCost.Infrastructure;
+using System;
 using System.Collections.Generic;
-using System.Web.Hosting;
-using HomeLoanCost.Infrastructure;
 
 namespace HomeLoanCost.Models
 {
@@ -16,28 +15,41 @@ namespace HomeLoanCost.Models
 
         public double InterestRate { get; set; }
 
-        public int Years { get; set; }
+        public double Years { get; set; }
 
-        public List<Payment> Payments { get; set; }
+        public const double PaymentsCountPerYear = 12;
 
-        public int PaymentsCount
+        public double PaymentsCount
         {
             get
             {
-                return Years*12;
+                return Years * PaymentsCountPerYear;
             }
         }
 
-        public double GetPaymentSum()
+        public List<Payment> Payments { get; set; }
+
+        /// <summary>
+        /// Calculation algorithm described in http://lt.wikipedia.org/wiki/Anuitetas.
+        /// </summary>
+        public double GetAnnuityPaymentSum()
         {
-            //double interestRateValue = InterestRate/100;
+            double monthlyInterestRateValue = GetPercentValue(InterestRate / PaymentsCountPerYear);
 
-            //double annuityRate = ((Math.Pow(1D + interestRateValue, 1D/12D) - 1D)*(Math.Pow(1D + interestRateValue, Years)))/
-            //                     (Math.Pow(1D + interestRateValue, Years) - 1D);
+            double multiplier = Math.Pow(1D + monthlyInterestRateValue, 1D / PaymentsCountPerYear) - 1D;
 
-            //return RoudingHelper.Round(annuityRate*Credit);
+            double divisor = Math.Pow(1D + monthlyInterestRateValue, Years);
 
-            return 206.16D;
+            double annuityRate = (multiplier * divisor) / (divisor - 1D);
+
+            double annuitySum = RoudingHelper.Round(annuityRate * Credit);
+
+            return annuitySum;
+        }
+
+        public double GetPercentValue(double percent)
+        {
+            return RoudingHelper.Round(percent / 100D, 5);
         }
     }
 }

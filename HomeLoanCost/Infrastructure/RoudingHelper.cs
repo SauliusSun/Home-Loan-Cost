@@ -11,7 +11,12 @@ namespace HomeLoanCost.Infrastructure
 
         public static double Round(double value)
         {
-            return Math.Round(value, 2, MidpointRounding.AwayFromZero);
+            return Round(value, 2);
+        }
+
+        public static double Round(double value, int precision)
+        {
+            return Math.Round(value, precision, MidpointRounding.AwayFromZero);
         }
     }
 }

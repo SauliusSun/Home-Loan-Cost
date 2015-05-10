@@ -15,7 +15,9 @@ namespace HomeLoanCost.Controllers
         public ActionResult Calculate(Loan loan)
         {
             double credit = loan.Credit;
-            double sum = loan.GetPaymentSum();
+
+            double sum = loan.GetAnnuityPaymentSum();
+            
             for (int month = 1; month <= loan.PaymentsCount; month++)
             {
                 var line = new Payment();
@@ -24,9 +26,9 @@ namespace HomeLoanCost.Controllers
                 line.Sum = sum;
                 line.Interest = RoudingHelper.Round(((loan.InterestRate / 12) / 100) * credit);
                 line.Repayment = RoudingHelper.Round(line.Sum - line.Interest);
-                double repayment = loan.Payments.Count == 0 ? line.Sum - line.Interest : loan.Payments.Last().Repayment;
+                double repayment = loan.Payments.Count == 0 ? line.Repayment : loan.Payments.Last().Repayment;
                 credit = RoudingHelper.Round(credit - repayment);
-                line.Credit = month == 1 ? loan.Credit : credit;
+                line.Credit = month == 1 ? loan.Credit : RoudingHelper.Round(loan.Payments.Last().Credit - loan.Payments.Last().Repayment);
                 loan.Payments.Add(line);
             }
 
