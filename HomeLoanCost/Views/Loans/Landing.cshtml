@@ -1,21 +1,30 @@
 ﻿@model HomeLoanCost.Models.Loan
 
 @{
-    ViewBag.Title = "Būsto paskolos skaičiuoklė";
+    ViewBag.Title = "Būsto kredito skaičiuoklė - sužinokite kaip sutaupysite daugiausia";
 }
 
-<h2>Būsto paskolos skaičiuoklė</h2>
+<h2>Būsto kredito skaičiuoklė</h2>
 
 <form id="formId" action="@Url.Action("Calculate", "Loans")" method="POST">
-    
+
+    Paskolos grąžinimo būdas
+    @*@Html.DropDownListFor(l => l.)*@
+    <br /><br />
+
     Paskolos suma 
     @Html.TextBoxFor(m => m.Credit)
+    
     <br/><br/>
+    
     Paskolos palūkanos
     @Html.TextBoxFor(m => m.InterestRate)
+    
     <br/><br/>
+    
     Paskola laikotarpiui (metai)
     @Html.TextBoxFor(m => m.Years)
+    
     <br /><br />
 
     <input id="btnCalculate" class="btn btn-success btn-sm" type="submit" value="Skaičiuoti!" />

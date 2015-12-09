@@ -19,15 +19,11 @@ namespace HomeLoanCost.Models
 
         public const double PaymentsCountPerYear = 12;
 
-        public double PaymentsCount
-        {
-            get
-            {
-                return Years * PaymentsCountPerYear;
-            }
-        }
+        public double PaymentsCount => Years * PaymentsCountPerYear;
 
         public List<Payment> Payments { get; set; }
+
+
 
         /// <summary>
         /// Calculation algorithm described in http://lt.wikipedia.org/wiki/Anuitetas.
@@ -45,6 +41,11 @@ namespace HomeLoanCost.Models
             double annuitySum = RoudingHelper.Round(annuityRate * Credit);
 
             return annuitySum;
+        }
+
+        public double GetLinearPaymentSum()
+        {
+            return 0;
         }
 
         public double GetPercentValue(double percent)

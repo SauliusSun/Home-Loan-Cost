@@ -90,6 +90,7 @@
     <Compile Include="Infrastructure\RoudingHelper.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Loan.cs" />
+    <Compile Include="Models\PaymentType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
